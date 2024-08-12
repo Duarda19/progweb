@@ -32,6 +32,16 @@
                     <div class="image-circle" style="background-image: url('/media/{{prod.image}}');"></div>
                     <div class="card-body">
                         <h5 class="card-title">{{prod.Produto}}</h5>
+                        <a href={% url 'home' %} class="btn btn-primary btn-card">
+                            <i class="fa fa-search"></i> Ver
+                        </a>
+                        <button class="btn btn-warning btn-card">
+                        <i class="fa fa-heart"></i> Favoritar</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}
