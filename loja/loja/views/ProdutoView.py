@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from loja.models import Produto
 from datetime import timedelta, datetime
 from django.utils import timezone
+def create_produto_view(request, id=None):
+    return render(request, template_name='produto/produto-create.html',status=200)
 def details_produto_view(request, id=None):
     # Processa o evento GET gerado pela action
     produtos = Produto.objects.all()
@@ -10,8 +12,31 @@ def details_produto_view(request, id=None):
     produto = produtos.first()
     print(produto)
     context = {'produto': produto}
-    return render(request, template_name='produto/produto-details.html', context=context,
-status=200)
+    return render(request, template_name='produto/produto-details.html', context=context,status=200)
+def delete_produto_view(request, id=None):
+    # Processa o evento GET gerado pela action
+    produtos = Produto.objects.all()
+    if id is not None:
+        produtos = produtos.filter(id=id)
+    produto = produtos.first() 
+    print(produto)
+    context = {'produto': produto}
+    return render(request, template_name='produto/produto-delete.html', context=context,status=200)
+    # adicione a função que trata o postback da interface de exclusão
+def delete_produto_postback(request, id=None):
+    # Processa o post back gerado pela action
+    if request.method == 'POST':
+        # Salva dados editados
+        id = request.POST.get("id")
+        produto = request.POST.get("Produto")
+        print("postback-delete")
+        print(id)
+        try:
+            Produto.objects.filter(id=id).delete()
+            print("Produto %s excluido com sucesso" % produto)
+        except Exception as e:
+            print("Erro salvando edição de produto: %s" % e)
+    return redirect("/produto")   
 def edit_produto_postback(request, id=None):
     if request.method == 'POST':
         # Salva dados editados
