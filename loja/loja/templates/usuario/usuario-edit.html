@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Usuário{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+{% block content %}
+    <div id="content">
+        <div class="container-fluid">
+            <div class="row">
+                <form class="col-md-6 col-lg-4 offset-md-3 offset-lg-4" method="POST" action="">
+                    <div class="row">
+                        {% csrf_token %}
+                        {% for f in usuarioForm %}
+                            {% if not f.is_hidden %}
+                                <div class="form-group col-md-6">
+                                    {{ f.label }}
+                                    {{ f }}
+                                </div>
+                            {% else %}
+                                {{ f }}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
