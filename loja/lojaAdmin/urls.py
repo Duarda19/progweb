@@ -25,5 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('loja.urls.HomeUrls')),
     path('produto/', include('loja.urls.ProdutoUrls')),
-    path('usuario/', include('loja.urls.UsuarioUrls'))
+    path('usuario/', include('loja.urls.UsuarioUrls')),
+    path('', include('loja.urls.AuthUrls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
