@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from loja.models import Produto, Fabricante, Categoria
 from datetime import timedelta, datetime
@@ -120,6 +121,7 @@ def edit_produto_postback(request, id=None):
         except Exception as e:
             print("Erro salvando edição de produto: %s" % e)
     return redirect("/produto")
+@login_required
 def edit_produto_view(request, id=None):
     produtos = Produto.objects.all()
     if id is not None:
