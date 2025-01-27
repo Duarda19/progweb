@@ -6,4 +6,6 @@ body{
 }
 #content form button{
     width: 100%;
+    background-color: red;
+    color: white;
 }

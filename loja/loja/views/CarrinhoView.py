@@ -121,6 +121,8 @@ def confirmar_carrinho_view(request):
         'carrinho': carrinho
     }
     return render(request, 'carrinho/carrinho-confirmado.html', context=context)
+
+
 def remover_item_view(request, item_id):
     item = get_object_or_404(CarrinhoItem, id=item_id)
     # Verifica se o item pertence ao carrinho do usuário (opcional)
@@ -128,6 +130,7 @@ def remover_item_view(request, item_id):
     if carrinho_id == item.carrinho.id:
         item.delete()
     return redirect('/carrinho')
-            
+
+
 
 
