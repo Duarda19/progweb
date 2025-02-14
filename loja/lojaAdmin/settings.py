@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'loja',
+    'social_django'
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -64,6 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # Adicione isso
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -130,3 +134,12 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_URL = '/logout'
 LOGOUT_REDIRECT_URL = '/login'
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend'
+]
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1539063836782992'
+SOCIAL_AUTH_FACEBOOK_SECRET = '4884a63c674f3527512903a20c758e35'
